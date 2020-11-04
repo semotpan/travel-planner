@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CityWeathersRepositoryAdapterTest {
 
     @Autowired
-    CityWeathersRepositoryAdapter repository;
+    CityWeathersRepositoryAdapter cityWeathersRepositoryAdapter;
 
     @Autowired
     EntityManager entityManager;
@@ -30,7 +30,7 @@ class CityWeathersRepositoryAdapterTest {
     @Test
     void persist() {
         final IssuedOn date = IssuedOn.newValue();
-        repository.save(List.of(CityWeather.builder()
+        cityWeathersRepositoryAdapter.save(List.of(CityWeather.builder()
                 .withCityName(CityName.valueOf("Chisinau"))
                 .withCountryCode(CountryCode.valueOf("MD"))
                 .withTemperature(Temperature.valueOf(10.0, CELSIUS))
@@ -40,7 +40,7 @@ class CityWeathersRepositoryAdapterTest {
                 .build()));
 
 
-        assertThat(repository.find(CityName.valueOf("Chisinau")))
+        assertThat(cityWeathersRepositoryAdapter.find(CityName.valueOf("Chisinau")))
                 .isNotNull()
                 .containsExactly(CityWeather.builder()
                         .withCityName(CityName.valueOf("Chisinau"))
@@ -56,7 +56,7 @@ class CityWeathersRepositoryAdapterTest {
     @Test
     void notFound() {
         final IssuedOn date = IssuedOn.newValue();
-        repository.save(List.of(CityWeather.builder()
+        cityWeathersRepositoryAdapter.save(List.of(CityWeather.builder()
                 .withCityName(CityName.valueOf("Chisinau"))
                 .withCountryCode(CountryCode.valueOf("MD"))
                 .withTemperature(Temperature.valueOf(10.0, CELSIUS))
@@ -65,6 +65,6 @@ class CityWeathersRepositoryAdapterTest {
                 .withIssuedOn(IssuedOn.valueOf(Instant.now().minus(2, ChronoUnit.HOURS)))
                 .build()));
 
-        assertThat(repository.find(CityName.valueOf("Chisinau"))).isEmpty();
+        assertThat(cityWeathersRepositoryAdapter.find(CityName.valueOf("Chisinau"))).isEmpty();
     }
 }

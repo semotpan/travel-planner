@@ -54,6 +54,6 @@ class ItineraryTest {
     void creationFailsWhenCitiesItineraryIsEmpty() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Itinerary.valueOf(ItineraryName.valueOf("itinerary"), null))
-                .withMessage("The Cities Itinerary cannot be empty");
+                .withMessage("The Itinerary Map cannot be empty");
     }
 }

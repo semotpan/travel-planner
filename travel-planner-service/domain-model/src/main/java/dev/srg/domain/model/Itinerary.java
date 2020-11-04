@@ -9,13 +9,13 @@ import java.util.Objects;
 public final class Itinerary {
 
     private final ItineraryName name;
-    private final List<CityWeather> citiesItinerary;
+    private final List<CityWeather> itineraryMap;
 
-    public Itinerary(ItineraryName name, List<CityWeather> citiesItinerary) {
+    public Itinerary(ItineraryName name, List<CityWeather> itineraryMap) {
         Guards.notNull(name, "The Itinerary Name cannot be null");
-        Guards.notEmpty(citiesItinerary, "The Cities Itinerary cannot be empty");
+        Guards.notEmpty(itineraryMap, "The Itinerary Map cannot be empty");
         this.name = name;
-        this.citiesItinerary = citiesItinerary;
+        this.itineraryMap = itineraryMap;
     }
 
     public static Itinerary valueOf(ItineraryName name, List<CityWeather> citiesItinerary) {
@@ -26,8 +26,8 @@ public final class Itinerary {
         return name;
     }
 
-    public List<CityWeather> getCitiesItinerary() {
-        return citiesItinerary;
+    public List<CityWeather> getItineraryMap() {
+        return itineraryMap;
     }
 
     @Override
@@ -40,11 +40,11 @@ public final class Itinerary {
 
         Itinerary itinerary = (Itinerary) o;
         return Objects.equals(name, itinerary.name) &&
-                Objects.equals(citiesItinerary, itinerary.citiesItinerary);
+                Objects.equals(itineraryMap, itinerary.itineraryMap);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, citiesItinerary);
+        return Objects.hash(name, itineraryMap);
     }
 }

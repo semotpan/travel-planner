@@ -13,8 +13,8 @@ import java.time.Instant;
 class CityWeatherTable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
-    @SequenceGenerator(name = "SEQ_GEN", sequenceName = "SEQ_WTH", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN_CW")
+    @SequenceGenerator(name = "SEQ_GEN_CW", sequenceName = "SEQ_WTH", allocationSize = 1)
     private Long id;
 
     private String cityName;
@@ -23,7 +23,7 @@ class CityWeatherTable {
     private Temperature.Unit temperatureUnit;
     private Integer cloudsValue;
     private Clouds.Unit cloudsUnit;
-    private Instant weatherDate;
+    private Instant weatherDateTime;
     private Instant issuedOn;
 
     CityWeather toCityWeather() {
@@ -32,7 +32,7 @@ class CityWeatherTable {
                 .withCountryCode(CountryCode.valueOf(countryCode))
                 .withTemperature(Temperature.valueOf(temperatureValue, temperatureUnit))
                 .withClouds(Clouds.valueOf(cloudsValue, cloudsUnit))
-                .withWeatherDate(WeatherDateTime.valueOf(weatherDate))
+                .withWeatherDate(WeatherDateTime.valueOf(weatherDateTime))
                 .withIssuedOn(IssuedOn.valueOf(issuedOn))
                 .build();
     }
@@ -48,7 +48,7 @@ class CityWeatherTable {
         private Temperature.Unit temperatureUnit;
         private Integer cloudsValue;
         private Clouds.Unit cloudsUnit;
-        private Instant weatherDate;
+        private Instant weatherDateTime;
         private Instant issuedOn;
 
         private Builder() {
@@ -84,8 +84,8 @@ class CityWeatherTable {
             return this;
         }
 
-        Builder withWeatherDate(Instant weatherDate) {
-            this.weatherDate = weatherDate;
+        Builder withWeatherDateTime(Instant weatherDateTime) {
+            this.weatherDateTime = weatherDateTime;
             return this;
         }
 
@@ -102,7 +102,7 @@ class CityWeatherTable {
             cityWeatherTable.setTemperatureUnit(temperatureUnit);
             cityWeatherTable.setCloudsValue(cloudsValue);
             cityWeatherTable.setCloudsUnit(cloudsUnit);
-            cityWeatherTable.setWeatherDate(weatherDate);
+            cityWeatherTable.setWeatherDateTime(weatherDateTime);
             cityWeatherTable.setIssuedOn(issuedOn);
             return cityWeatherTable;
         }

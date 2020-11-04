@@ -45,7 +45,7 @@ final class OpenWeatherMapService implements WeatherApi {
     @Data
     private static class CityWeatherForecast {
         private List<WeatherForecastHourly> list;
-        private CityHourly city;
+        private City city;
     }
 
     @Data
@@ -66,7 +66,7 @@ final class OpenWeatherMapService implements WeatherApi {
     }
 
     @Data
-    private static class CityHourly {
+    private static class City {
         private String name;
         private String country;
     }
