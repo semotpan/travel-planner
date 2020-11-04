@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @RequiredArgsConstructor
-final class QueryCityWeatherService implements QueryCityWeather {
+class QueryCityWeatherService implements QueryCityWeather {
 
     private final CityWeathers cityWeathers;
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CityWeathers {
 
-    void save(CityWeather cityWeather);
+    void save(List<CityWeather> cityWeathers);
 
     List<CityWeather> find(CityName cityName);
 }
