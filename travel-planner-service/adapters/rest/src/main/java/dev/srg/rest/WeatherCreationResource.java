@@ -1,6 +1,6 @@
 package dev.srg.rest;
 
-import dev.srg.application.CreateCityWeather;
+import dev.srg.application.CreateCityWeatherUseCase;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,12 +17,12 @@ import java.net.URI;
 public class WeatherCreationResource {
 
     private final WeatherApi weatherApi;
-    private final CreateCityWeather createCityWeather;
+    private final CreateCityWeatherUseCase createCityWeatherUseCase;
 
     @PostMapping("/submit-city")
     ResponseEntity<?> submit(@RequestBody CityInfo cityInfo) {
         var cityWeather = weatherApi.lookup(cityInfo.getCity());
-        createCityWeather.append(cityWeather);
+        createCityWeatherUseCase.append(cityWeather);
         return ResponseEntity.created(URI.create("/")).build(); // TODO review location
     }
 

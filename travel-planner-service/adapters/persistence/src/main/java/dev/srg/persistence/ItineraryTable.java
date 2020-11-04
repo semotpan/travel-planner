@@ -42,7 +42,7 @@ class ItineraryTable {
                                 .withCountryCode(CountryCode.valueOf(cityWeatherInfo.getCountryCode()))
                                 .withTemperature(Temperature.valueOf(cityWeatherInfo.getTemperatureValue(), cityWeatherInfo.getTemperatureUnit()))
                                 .withClouds(Clouds.valueOf(cityWeatherInfo.getCloudsValue(), cityWeatherInfo.getCloudsUnit()))
-                                .withWeatherDate(WeatherDateTime.valueOf(cityWeatherInfo.getWeatherDateTime()))
+                                .withWeatherDateTime(WeatherDateTime.valueOf(cityWeatherInfo.getWeatherDateTime()))
                                 .withIssuedOn(IssuedOn.valueOf(cityWeatherInfo.getIssuedOn()))
                                 .build())
                         .collect(toList()));

@@ -5,11 +5,11 @@ import dev.srg.domain.model.CityWeathers;
 
 import java.util.List;
 
-public interface CreateCityWeather {
+public interface CreateCityWeatherUseCase {
 
     void append(List<CityWeather> cityWeathers);
 
-    static CreateCityWeather createCityWeather(CityWeathers cityWeathers) {
+    static CreateCityWeatherUseCase createCityWeather(CityWeathers cityWeathers) {
         return new CreateCityWeatherService(cityWeathers);
     }
 }

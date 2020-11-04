@@ -19,7 +19,7 @@ class CityWeatherTest {
                 .withCountryCode(CountryCode.valueOf("MD"))
                 .withTemperature(Temperature.valueOf(10.0, CELSIUS))
                 .withClouds(Clouds.valueOf(1, PERCENTAGE))
-                .withWeatherDate(WeatherDateTime.valueOf(date.getValue()))
+                .withWeatherDateTime(WeatherDateTime.valueOf(date.getValue()))
                 .withIssuedOn(date)
                 .build())
                 .isNotNull()
@@ -28,7 +28,7 @@ class CityWeatherTest {
                         .withCountryCode(CountryCode.valueOf("MD"))
                         .withTemperature(Temperature.valueOf(10.0, CELSIUS))
                         .withClouds(Clouds.valueOf(1, PERCENTAGE))
-                        .withWeatherDate(WeatherDateTime.valueOf(date.getValue()))
+                        .withWeatherDateTime(WeatherDateTime.valueOf(date.getValue()))
                         .withIssuedOn(date)
                         .build());
     }

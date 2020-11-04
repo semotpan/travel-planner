@@ -109,7 +109,7 @@ public final class CityWeather {
             return this;
         }
 
-        public Builder withWeatherDate(WeatherDateTime weatherDateTime) {
+        public Builder withWeatherDateTime(WeatherDateTime weatherDateTime) {
             this.weatherDateTime = weatherDateTime;
             return this;
         }

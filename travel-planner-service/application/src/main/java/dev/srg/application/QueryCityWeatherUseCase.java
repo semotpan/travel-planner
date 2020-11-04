@@ -6,11 +6,11 @@ import dev.srg.domain.model.CityWeathers;
 
 import java.util.List;
 
-public interface QueryCityWeather {
+public interface QueryCityWeatherUseCase {
 
     List<CityWeather> find(CityName cityName);
 
-    static QueryCityWeather createQueryCityWeather(CityWeathers cityWeathers) {
-        return new QueryCityWeatherService(cityWeathers);
+    static QueryCityWeatherUseCase createQueryCityWeather(CityWeathers cityWeathers) {
+        return new QueryCityWeatherUseCaseService(cityWeathers);
     }
 }

@@ -33,7 +33,7 @@ final class OpenWeatherMapService implements WeatherApi {
                             .withCountryCode(CountryCode.valueOf(response.getBody().getCity().getCountry()))
                             .withTemperature(Temperature.valueOf(value.getMain().getTemp(), CELSIUS))
                             .withClouds(Clouds.valueOf(value.getClouds().getAll(), PERCENTAGE))
-                            .withWeatherDate(WeatherDateTime.valueOf(value.getDt()))
+                            .withWeatherDateTime(WeatherDateTime.valueOf(value.getDt()))
                             .withIssuedOn(IssuedOn.valueOf(issuedOn))
                             .build())
                     .collect(toList());
