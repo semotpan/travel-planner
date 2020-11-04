@@ -19,6 +19,7 @@
         <module>domain-model</module>
         <module>application</module>
         <module>adapters/persistence</module>
+        <module>adapters/rest</module>
     </modules>
 
     <properties>
