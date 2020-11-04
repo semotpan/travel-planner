@@ -20,6 +20,7 @@
         <module>application</module>
         <module>adapters/persistence</module>
         <module>adapters/rest</module>
+        <module>service</module>
     </modules>
 
     <properties>

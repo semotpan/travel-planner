@@ -32,7 +32,7 @@ class CityWeathersRepositoryAdapter implements CityWeathers {
                         .withTemperatureUnit(cityWeather.getTemperature().getUnit())
                         .withCloudsValue(cityWeather.getClouds().getValue())
                         .withCloudsUnit(cityWeather.getClouds().getUnit())
-                        .withWeatherDate(cityWeather.getWeatherDate().getValue())
+                        .withWeatherDate(cityWeather.getWeatherDateTime().getValue())
                         .withIssuedOn(cityWeather.getIssuedOn().getValue())
                         .build()).collect(toList()));
     }

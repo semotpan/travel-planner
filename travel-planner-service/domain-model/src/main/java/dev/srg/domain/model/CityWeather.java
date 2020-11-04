@@ -11,7 +11,7 @@ public final class CityWeather {
     private final CountryCode countryCode;
     private final Temperature temperature;
     private final Clouds clouds;
-    private final WeatherDate weatherDate;
+    private final WeatherDateTime weatherDateTime;
     private final IssuedOn issuedOn;
 
     private CityWeather(Builder builder) {
@@ -19,14 +19,14 @@ public final class CityWeather {
         Guards.notNull(builder.countryCode, "Country Code cannot be null");
         Guards.notNull(builder.temperature, "Temperature cannot be null");
         Guards.notNull(builder.clouds, "Clouds cannot be null");
-        Guards.notNull(builder.weatherDate, "Weather Date cannot be null");
+        Guards.notNull(builder.weatherDateTime, "Weather Date Time cannot be null");
         Guards.notNull(builder.issuedOn, "IssuedOn cannot be null");
 
         this.cityName = builder.cityName;
         this.countryCode = builder.countryCode;
         this.temperature = builder.temperature;
         this.clouds = builder.clouds;
-        this.weatherDate = builder.weatherDate;
+        this.weatherDateTime = builder.weatherDateTime;
         this.issuedOn = builder.issuedOn;
     }
 
@@ -46,8 +46,8 @@ public final class CityWeather {
         return clouds;
     }
 
-    public WeatherDate getWeatherDate() {
-        return weatherDate;
+    public WeatherDateTime getWeatherDateTime() {
+        return weatherDateTime;
     }
 
     public IssuedOn getIssuedOn() {
@@ -71,13 +71,13 @@ public final class CityWeather {
                 Objects.equals(countryCode, that.countryCode) &&
                 Objects.equals(temperature, that.temperature) &&
                 Objects.equals(clouds, that.clouds) &&
-                Objects.equals(weatherDate, that.weatherDate) &&
+                Objects.equals(weatherDateTime, that.weatherDateTime) &&
                 Objects.equals(issuedOn, that.issuedOn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cityName, countryCode, temperature, clouds, weatherDate, issuedOn);
+        return Objects.hash(cityName, countryCode, temperature, clouds, weatherDateTime, issuedOn);
     }
 
     public static class Builder {
@@ -86,7 +86,7 @@ public final class CityWeather {
         private CountryCode countryCode;
         private Temperature temperature;
         private Clouds clouds;
-        private WeatherDate weatherDate;
+        private WeatherDateTime weatherDateTime;
         private IssuedOn issuedOn;
 
         public Builder withCityName(CityName cityName) {
@@ -109,8 +109,8 @@ public final class CityWeather {
             return this;
         }
 
-        public Builder withWeatherDate(WeatherDate weatherDate) {
-            this.weatherDate = weatherDate;
+        public Builder withWeatherDate(WeatherDateTime weatherDateTime) {
+            this.weatherDateTime = weatherDateTime;
             return this;
         }
 

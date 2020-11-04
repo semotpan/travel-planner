@@ -32,7 +32,7 @@ class CityWeatherTable {
                 .withCountryCode(CountryCode.valueOf(countryCode))
                 .withTemperature(Temperature.valueOf(temperatureValue, temperatureUnit))
                 .withClouds(Clouds.valueOf(cloudsValue, cloudsUnit))
-                .withWeatherDate(WeatherDate.valueOf(weatherDate))
+                .withWeatherDate(WeatherDateTime.valueOf(weatherDate))
                 .withIssuedOn(IssuedOn.valueOf(issuedOn))
                 .build();
     }

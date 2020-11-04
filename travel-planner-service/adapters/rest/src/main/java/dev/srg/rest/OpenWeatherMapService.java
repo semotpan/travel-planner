@@ -24,7 +24,7 @@ final class OpenWeatherMapService implements WeatherApi {
     @Override
     public List<CityWeather> lookup(String city) {
         var response = restTemplate.getForEntity(properties.url() + "&q=" + city, CityWeatherForecast.class);
-
+        // TODO review exception handling
         if (OK == response.getStatusCode() && response.getBody() != null) {
             var issuedOn = Instant.now();
             return response.getBody().getList().stream()
@@ -33,7 +33,7 @@ final class OpenWeatherMapService implements WeatherApi {
                             .withCountryCode(CountryCode.valueOf(response.getBody().getCity().getCountry()))
                             .withTemperature(Temperature.valueOf(value.getMain().getTemp(), CELSIUS))
                             .withClouds(Clouds.valueOf(value.getClouds().getAll(), PERCENTAGE))
-                            .withWeatherDate(WeatherDate.valueOf(value.getDt()))
+                            .withWeatherDate(WeatherDateTime.valueOf(value.getDt()))
                             .withIssuedOn(IssuedOn.valueOf(issuedOn))
                             .build())
                     .collect(toList());

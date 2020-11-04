@@ -3,11 +3,13 @@ package dev.srg.application;
 import dev.srg.domain.model.CityWeather;
 import dev.srg.domain.model.CityWeathers;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
-class CreateCityWeatherService implements CreateCityWeather {
+final class CreateCityWeatherService implements CreateCityWeather {
 
     private final CityWeathers cityWeathers;
 

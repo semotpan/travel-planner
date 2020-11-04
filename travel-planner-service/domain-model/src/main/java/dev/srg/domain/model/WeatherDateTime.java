@@ -3,11 +3,11 @@ package dev.srg.domain.model;
 import java.time.Instant;
 import java.util.Objects;
 
-public final class WeatherDate {
+public final class WeatherDateTime {
 
     private final Instant value;
 
-    private WeatherDate(Instant value) {
+    private WeatherDateTime(Instant value) {
         Guards.notNull(value, "The value must not be null");
         this.value = value;
     }
@@ -16,8 +16,8 @@ public final class WeatherDate {
         return value;
     }
 
-    public static WeatherDate valueOf(Instant value) {
-        return new WeatherDate(value);
+    public static WeatherDateTime valueOf(Instant value) {
+        return new WeatherDateTime(value);
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class WeatherDate {
         if (o == null || getClass() != o.getClass())
             return false;
 
-        WeatherDate that = (WeatherDate) o;
+        WeatherDateTime that = (WeatherDateTime) o;
         return Objects.equals(value, that.value);
     }
 
