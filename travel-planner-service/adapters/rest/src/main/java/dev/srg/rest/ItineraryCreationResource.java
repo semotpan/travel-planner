@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +24,11 @@ class ItineraryCreationResource {
 
     private final CreateItineraryUseCase createItineraryUseCase;
 
+    @CrossOrigin
     @PostMapping("/itinerary")
     ResponseEntity<?> submit(@RequestBody ItineraryInfo itineraryInfo) {
         createItineraryUseCase.create(Itinerary.valueOf(ItineraryName.valueOf(itineraryInfo.getName()),
-                itineraryInfo.getWeatherInfos().stream()
+                itineraryInfo.getItineraryMap().stream()
                         .map(weatherInfo -> CityWeather.builder()
                                 .withCityName(CityName.valueOf(weatherInfo.getCityName()))
                                 .withCountryCode(CountryCode.valueOf(weatherInfo.getCountryCode()))
@@ -44,7 +46,7 @@ class ItineraryCreationResource {
 
         public String name;
 
-        public List<WeatherInfo> weatherInfos;
+        public List<WeatherInfo> itineraryMap;
 
     }
 

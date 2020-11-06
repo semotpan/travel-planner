@@ -1,12 +1,20 @@
-<form>
-
+<form (ngSubmit)="onSubmit()" #f="ngForm">
   <div class="form-group">
-    <button class="btn btn-dark form-control">Save Itinerary</button>
-
+    <button class="btn btn-dark form-control" type="submit">Save Itinerary</button>
   </div>
   <div class="form-group">
     <label for="itinerary-name">Itinerary Name</label>
-
-    <input id="itinerary-name" class="form-control" type="text" placeholder="Itinerary Name">
+    <input
+      id="itinerary-name"
+      class="form-control"
+      type="text"
+      placeholder="Itinerary Name"
+      ngModel
+      name="name"
+      required
+      #name="ngModel"
+    >
+    <span class="help-block" *ngIf="!name.valid && name.touched">Enter a valid Itinerary Name</span>
+    <span class="help-block" *ngIf="!name.valid && name.touched">Enter a valid Itinerary Name</span>
   </div>
 </form>

@@ -10,8 +10,6 @@ import {CityDateService} from '../../services/city-date.service';
 })
 export class CityAddComponent implements OnInit {
   @ViewChild('f', {static: true}) form: NgForm;
-  // @Output() cityDateCreated = new EventEmitter<CityDate>();
-  // @Input() cityDate: CityDate;
 
   constructor(private cityDateService: CityDateService) { }
 

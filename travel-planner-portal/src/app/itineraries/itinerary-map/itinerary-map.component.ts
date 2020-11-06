@@ -3,6 +3,7 @@ import {CityDateService} from '../../services/city-date.service';
 import {CityDate} from '../../shared/city-date.model';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {CityWeather} from '../../shared/city-weather.model';
+import {ItineraryMapService} from '../../services/itinerary-map.service';
 
 @Component({
   selector: 'app-itinerary-map',
@@ -14,6 +15,7 @@ export class ItineraryMapComponent implements OnInit {
   citiesWeather: CityWeather [] = [];
 
   constructor(private cityDateService: CityDateService,
+              private itineraryMapService: ItineraryMapService,
               private http: HttpClient) {
   }
 
@@ -22,7 +24,6 @@ export class ItineraryMapComponent implements OnInit {
       .subscribe(cityDate => {
         if (cityDate !== null) {
           this.cityDates.push(cityDate);
-          console.log(cityDate);
           this.http.post('http://localhost:8080/submit-city', cityDate)
             .subscribe(
               (response) => this.queryData(cityDate),
@@ -38,7 +39,10 @@ export class ItineraryMapComponent implements OnInit {
       .set('date', cityDate.date.toString());
     this.http.get<CityWeather>('http://localhost:8080/weather', {params})
       .subscribe(
-        (responseData) => this.citiesWeather.push(responseData),
+        (responseData) => {
+          this.citiesWeather.push(responseData);
+          this.itineraryMapService.submitItineraryMap(responseData);
+        },
         (error) => console.log(error)
       );
   }
