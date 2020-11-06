@@ -3,7 +3,7 @@ package dev.srg.domain.model;
 import java.time.Instant;
 import java.util.Objects;
 
-public final class WeatherDateTime {
+public final class WeatherDateTime implements Comparable<WeatherDateTime>{
 
     private final Instant value;
 
@@ -40,5 +40,10 @@ public final class WeatherDateTime {
     @Override
     public String toString() {
         return value.toString();
+    }
+
+    @Override
+    public int compareTo(WeatherDateTime o) {
+        return o.value.compareTo(value);
     }
 }

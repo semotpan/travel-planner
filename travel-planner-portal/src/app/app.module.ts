@@ -12,6 +12,7 @@ import { ItineraryAddComponent } from './itineraries/itinerary-add/itinerary-add
 import { ItineraryNewComponent } from './itineraries/itinerary-new/itinerary-new.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ItineraryMapComponent } from './itineraries/itinerary-map/itinerary-map.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     ItineraryAddComponent,
     ItineraryNewComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ItineraryMapComponent
   ],
   imports: [
     BrowserModule,

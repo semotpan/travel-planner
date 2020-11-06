@@ -5,11 +5,14 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.time.Instant;
+import java.util.Date;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -19,6 +22,7 @@ public class WeatherCreationResource {
     private final WeatherApi weatherApi;
     private final CreateCityWeatherUseCase createCityWeatherUseCase;
 
+    @CrossOrigin
     @PostMapping("/submit-city")
     ResponseEntity<?> submit(@RequestBody CityInfo cityInfo) {
         var cityWeather = weatherApi.lookup(cityInfo.getCity());
@@ -29,7 +33,13 @@ public class WeatherCreationResource {
     @Data
     private static class CityInfo {
 
-        public String city;
+        String city;
+
+        Date date;
+
+        Instant toInstant() {
+            return date.toInstant();
+        }
 
     }
 }

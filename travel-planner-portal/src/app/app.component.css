@@ -1,8 +1,12 @@
 .vl {
   border-left: 1px solid darkgray;
-  height: 500px;
+  height: 600px;
   position: absolute;
   left: 50%;
   margin-left: -3px;
   top: 0;
+}
+
+label {
+  font-family: ".SF NS Mono", serif;
 }

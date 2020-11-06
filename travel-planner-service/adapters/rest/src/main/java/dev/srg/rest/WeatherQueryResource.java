@@ -4,19 +4,19 @@ import dev.srg.application.QueryCityWeatherUseCase;
 import dev.srg.domain.model.CityName;
 import dev.srg.domain.model.Clouds;
 import dev.srg.domain.model.Temperature;
+import dev.srg.domain.model.WeatherDateTime;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
-import java.util.Date;
-
-import static java.util.stream.Collectors.toList;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -25,30 +25,32 @@ class WeatherQueryResource {
 
     private final QueryCityWeatherUseCase queryCityWeatherUseCase;
 
+    @CrossOrigin
     @GetMapping("/weather")
     ResponseEntity<?> query(CityQuery cityQuery) {
-        var cityWeathers = queryCityWeatherUseCase.find(CityName.valueOf(cityQuery.getCity()));
-        return new ResponseEntity<>(cityWeathers.stream()
-                .map(cityWeather -> WeatherResponse.builder()
-                        .withCityName(cityWeather.getCityName().getValue())
-                        .withCountryCode(cityWeather.getCountryCode().getValue())
-                        .withTemperature(cityWeather.getTemperature().getValue())
-                        .withTemperatureUnit(cityWeather.getTemperature().getUnit())
-                        .withClouds(cityWeather.getClouds().getValue())
-                        .withCloudsUnit(cityWeather.getClouds().getUnit())
-                        .withWeatherDateTime(cityWeather.getWeatherDateTime().getValue())
-                        .withIssuedOn(cityWeather.getIssuedOn().getValue())
-                        .build())
-                .collect(toList()), HttpStatus.OK);
+        var cityWeather = queryCityWeatherUseCase.find(CityName.valueOf(cityQuery.getCity()), WeatherDateTime.valueOf(cityQuery.toInstant()));
+        return new ResponseEntity<>(WeatherResponse.builder()
+                .withCityName(cityWeather.getCityName().getValue())
+                .withCountryCode(cityWeather.getCountryCode().getValue())
+                .withTemperature(cityWeather.getTemperature().getValue())
+                .withTemperatureUnit(cityWeather.getTemperature().getUnit())
+                .withClouds(cityWeather.getClouds().getValue())
+                .withCloudsUnit(cityWeather.getClouds().getUnit())
+                .withWeatherDateTime(cityWeather.getWeatherDateTime().getValue())
+                .withIssuedOn(cityWeather.getIssuedOn().getValue())
+                .build(), HttpStatus.OK);
     }
 
     @Data
     private static class CityQuery {
 
-        public String city;
+        String city;
 
-        @DateTimeFormat(pattern = "dd/MM/yyyy h:mm a")
-        public Date date;
+        String date;
+
+        Instant toInstant() {
+            return LocalDateTime.parse(date).toInstant(ZoneOffset.UTC);
+        }
 
     }
 

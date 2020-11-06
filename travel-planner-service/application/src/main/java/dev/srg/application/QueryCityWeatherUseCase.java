@@ -3,12 +3,11 @@ package dev.srg.application;
 import dev.srg.domain.model.CityName;
 import dev.srg.domain.model.CityWeather;
 import dev.srg.domain.model.CityWeathers;
-
-import java.util.List;
+import dev.srg.domain.model.WeatherDateTime;
 
 public interface QueryCityWeatherUseCase {
 
-    List<CityWeather> find(CityName cityName);
+    CityWeather find(CityName cityName, WeatherDateTime weatherDateTime);
 
     static QueryCityWeatherUseCase createQueryCityWeather(CityWeathers cityWeathers) {
         return new QueryCityWeatherUseCaseService(cityWeathers);
