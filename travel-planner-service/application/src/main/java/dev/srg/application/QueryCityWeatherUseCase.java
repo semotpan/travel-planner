@@ -5,11 +5,13 @@ import dev.srg.domain.model.CityWeather;
 import dev.srg.domain.model.CityWeathers;
 import dev.srg.domain.model.WeatherDateTime;
 
+import java.util.Optional;
+
 public interface QueryCityWeatherUseCase {
 
-    CityWeather find(CityName cityName, WeatherDateTime weatherDateTime);
+    Optional<CityWeather> find(CityName cityName, WeatherDateTime weatherDateTime);
 
     static QueryCityWeatherUseCase createQueryCityWeather(CityWeathers cityWeathers) {
-        return new QueryCityWeatherUseCaseService(cityWeathers);
+        return new QueryCityWeatherService(cityWeathers);
     }
 }

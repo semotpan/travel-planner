@@ -29,15 +29,18 @@ class WeatherQueryResource {
     @GetMapping("/weather")
     ResponseEntity<?> query(CityQuery cityQuery) {
         var cityWeather = queryCityWeatherUseCase.find(CityName.valueOf(cityQuery.getCity()), WeatherDateTime.valueOf(cityQuery.toInstant()));
+        if (cityWeather.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(WeatherResponse.builder()
-                .withCityName(cityWeather.getCityName().getValue())
-                .withCountryCode(cityWeather.getCountryCode().getValue())
-                .withTemperature(cityWeather.getTemperature().getValue())
-                .withTemperatureUnit(cityWeather.getTemperature().getUnit())
-                .withClouds(cityWeather.getClouds().getValue())
-                .withCloudsUnit(cityWeather.getClouds().getUnit())
-                .withWeatherDateTime(cityWeather.getWeatherDateTime().getValue())
-                .withIssuedOn(cityWeather.getIssuedOn().getValue())
+                .withCityName(cityWeather.get().getCityName().getValue())
+                .withCountryCode(cityWeather.get().getCountryCode().getValue())
+                .withTemperature(cityWeather.get().getTemperature().getValue())
+                .withTemperatureUnit(cityWeather.get().getTemperature().getUnit())
+                .withClouds(cityWeather.get().getClouds().getValue())
+                .withCloudsUnit(cityWeather.get().getClouds().getUnit())
+                .withWeatherDateTime(cityWeather.get().getWeatherDateTime().getValue())
+                .withIssuedOn(cityWeather.get().getIssuedOn().getValue())
                 .build(), HttpStatus.OK);
     }
 
